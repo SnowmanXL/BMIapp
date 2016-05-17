@@ -1,0 +1,8 @@
+#########################################
+##  WELCOME TO THE BMI CALCULATOR APP  ##
+#########################################
+
+Stay tuned for the new version!
+
+$ Press 1 to login with a username
+$ Press 2 to use BMI Calculator anonymous
