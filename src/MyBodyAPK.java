@@ -29,7 +29,7 @@ public class MyBodyAPK {
                                                 System.out.println("oops... something went wrong getting the numbers!");
                                 }
                 }
- //
+ 
                 public void readFile() throws IOException {                                                                                                                                                                          // Function. Check the existence of the database file
                                 String filename = "bmi_db.txt";
                                 File f = new File(filename);
