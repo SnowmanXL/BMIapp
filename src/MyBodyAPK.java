@@ -78,11 +78,19 @@ public class MyBodyAPK {
 				this.loginprocedure();
 			}
 
-		} else if (uresponse == 2) { // Provide option to use the application
-										// anonymously
-			System.out.println("");
-			System.out.println("You will be using MyBodyAPK anonimously");
-			MyBodyAPK.uname = "Anonimous";
+		} else if (uresponse == 2) { 
+			System.out.println("Please insert your desired username:");
+			BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
+			MyBodyAPK.uname = br2.readLine();
+			
+			System.out.println("Please insert your desired username:");
+			BufferedReader br22 = new BufferedReader(new InputStreamReader(System.in));
+			MyBodyAPK.password = br22.readLine();
+			
+			new NewUser(MyBodyAPK.uname,MyBodyAPK.password);
+			new MyBodyAPK();
+		
+			
 		} else { // catch not viable input and let user return to start menu
 			System.out.println("Please choose between 1 or 2");
 		}
