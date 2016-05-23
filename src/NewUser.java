@@ -9,11 +9,10 @@ public class NewUser {
 	static Connection conn = null;
 	static Statement stmt = null;
 	static int Uid;
-	
+
 	public NewUser(String NewUser, String NewPW) {
-		// TODO Auto-generated constructor stub
-	
-	try {
+
+		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -21,43 +20,43 @@ public class NewUser {
 			String sql = "SELECT MAX(U_ID) u_id FROM users;";
 			System.out.println(sql);
 			ResultSet rs = stmt.executeQuery(sql);
-			System.out.println(rs);	
+			System.out.println(rs);
 			if (rs.next()) {
-			Uid = rs.getInt("u_id");
-			Uid++;
+				Uid = rs.getInt("u_id");
+				Uid++;
 			}
 			System.out.println(Uid);
-			
+
 			rs.close();
 			stmt.close();
-			
+
 			stmt = conn.createStatement();
 			String sql1;
-			sql1 = "INSERT INTO users (U_ID,U_NAME,U_WW) VALUES ("+ Uid + ",\"" + NewUser + "\",\"" + NewPW +"\")";
+			sql1 = "INSERT INTO users (U_ID,U_NAME,U_WW) VALUES (" + Uid + ",\"" + NewUser + "\",\"" + NewPW + "\")";
 			System.out.println(sql1);
 			stmt.executeUpdate(sql1);
 			stmt.close();
 			conn.close();
 			System.out.println("User has been created");
-			
-	} catch (SQLException se) {
-		se.printStackTrace();
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally {
-		try {
-			if (stmt != null)
-				stmt.close();
-		} catch (SQLException se2) {
-		}
-		try {
-			if (conn != null)
-				conn.close();
+
 		} catch (SQLException se) {
 			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
 		}
-	}
-	System.out.println("Goodbye!");
+		System.out.println("Goodbye!");
 	}
 
 	public static void main(String[] args) {
