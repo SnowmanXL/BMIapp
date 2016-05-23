@@ -14,6 +14,7 @@ public class MyBodyAPK {
 	public int uresponse = 0;
 	public static String uname;
 	public static String password;
+	public static String StartMenu = "StartMenu"
 
 	public MyBodyAPK() throws NumberFormatException, IOException {
 		this.readFile();
@@ -43,8 +44,8 @@ public class MyBodyAPK {
 		this.pw = new PrintWriter(bw);
 	}
 
-	public void startMenu() throws FileNotFoundException, IOException {
-		try (BufferedReader br = new BufferedReader(new FileReader("StartMenu.txt"))) {
+	public void startMenu(String FileName) throws FileNotFoundException, IOException {
+		try (BufferedReader br = new BufferedReader(new FileReader(FileName))) {
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				System.out.println(line);
@@ -98,6 +99,8 @@ public class MyBodyAPK {
 
 	public void mainApp() throws NumberFormatException, IOException {
 
+		
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Please " + MyBodyAPK.uname + " insert your weight in kilograms");
 		double weight = Double.parseDouble(br.readLine());
