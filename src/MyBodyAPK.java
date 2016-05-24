@@ -16,7 +16,9 @@ public class MyBodyAPK {
 	public static String password;
 	public static String StartMenu = "StartMenu.txt";
 	public static String MainMenu = "MainMenu.txt";
-	
+	public static int GenderScore;
+	public static int MassMean;
+
 	public MyBodyAPK() throws NumberFormatException, IOException {
 		this.readFile();
 		this.DispMenuText(StartMenu);
@@ -100,24 +102,22 @@ public class MyBodyAPK {
 
 	}
 
-	
-	public void MainMenu () throws NumberFormatException, IOException {
+	public void MainMenu() throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int uresponse = Integer.parseInt(br.readLine());
-	
+
 		if (uresponse == 1) {
 			this.BMIcalculation();
 		} else if (uresponse == 2) {
-			//Dashboard Functionality
+			// Dashboard Functionality
 		} else if (uresponse == 3) {
-			//Settings Functionality
+			// Settings Functionality
 		} else if (uresponse == 4) {
 			new MyBodyAPK();
 		}
-		
+
 	}
 
-	
 	public void BMIcalculation() throws NumberFormatException, IOException {	
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Please " + MyBodyAPK.uname + " insert your weight in kilograms");
@@ -135,11 +135,63 @@ public class MyBodyAPK {
 		System.out.println("Your BMI = " + BMI);
 		System.out.println("");
 		System.out.println(" ------------------------ ");
+		
+		
+		
+		if (BMI <= 18.5) {
+			MassMean = 1;
+		} else if (BMI > 18.5 && BMI <= 25){
+			MassMean = 2;
+		} else if (BMI > 25 && BMI <= 30){
+			MassMean = 3;
+		} else if (BMI > 30 && BMI <= 35){
+			MassMean = 4;
+		} else if (BMI > 35 ){
+			MassMean = 5;
+		} 
+		
+		BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Please " + MyBodyAPK.uname + " insert your middlespan in centimeters");
+		double MiddleSpan = Double.parseDouble(br2.readLine());
+		
+		BufferedReader br4 = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Please " + MyBodyAPK.uname + " insert your gender (Man or Woman)");
+		String gender = br4.readLine();
+		
+		
+		if (gender.equals("man" ) || gender.equals("Man")) {
+			if (MiddleSpan < 102) {
+				GenderScore = 1;
+			} else if (MiddleSpan >= 102) {
+				GenderScore = 2;
+			}
+		} else if (gender.equals("Woman" ) || gender.equals("woman")) {
+			if (MiddleSpan < 88) {
+				GenderScore = 1;
+			} else if (MiddleSpan >= 88) {
+				GenderScore = 2;
+			}
+		}
+			
+		int sum = MassMean + GenderScore;
+		
+		if (sum == 2 || sum == 3 || sum == 4 && MassMean == 2) {
+			System.out.println("Geen verhoogd risico");
+		} else if (sum == 4 && MassMean == 3) { 
+			System.out.println("Verhoogd risico");
+		}	else if (sum == 5) { 
+			System.out.println("Hoog risico");
+		}	else if (sum == 6 || sum == 7) { 
+			System.out.println("Zeer hoog risico");
+		}
+
 		System.out.println("");
-		System.out.println(
-				"Press 1 to calculate your BMI again, press 2 go back to the main menu");
-		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-		int response = Integer.parseInt(br1.readLine());
+		System.out.println("");
+		System.out.println("");
+		System.out.println("Press 1 to calculate your BMI again, press 2 go back to the main menu");
+		
+		BufferedReader br3 = new BufferedReader(new InputStreamReader(System.in));
+		int response = Integer.parseInt(br3.readLine());
 		if (response == 1) {
 			this.BMIcalculation();
 		} else if (response == 2) {
@@ -147,6 +199,7 @@ public class MyBodyAPK {
 		} else {
 			this.MainMenu();
 		}
+	
 
 	}
 
