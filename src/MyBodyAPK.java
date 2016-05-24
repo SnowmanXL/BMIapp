@@ -14,13 +14,15 @@ public class MyBodyAPK {
 	public int uresponse = 0;
 	public static String uname;
 	public static String password;
-	public static String StartMenu = "StartMenu"
-
+	public static String StartMenu = "StartMenu.txt";
+	public static String MainMenu = "MainMenu.txt";
+	
 	public MyBodyAPK() throws NumberFormatException, IOException {
 		this.readFile();
-		this.startMenu();
+		this.DispMenuText(StartMenu);
 		this.loginprocedure();
-		this.mainApp();
+		this.DispMenuText(MainMenu);
+		this.MainMenu();
 	}
 
 	public static void main(String[] args) {
@@ -44,7 +46,7 @@ public class MyBodyAPK {
 		this.pw = new PrintWriter(bw);
 	}
 
-	public void startMenu(String FileName) throws FileNotFoundException, IOException {
+	public void DispMenuText(String FileName) throws FileNotFoundException, IOException {
 		try (BufferedReader br = new BufferedReader(new FileReader(FileName))) {
 			String line = null;
 			while ((line = br.readLine()) != null) {
@@ -84,7 +86,7 @@ public class MyBodyAPK {
 			BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
 			MyBodyAPK.uname = br2.readLine();
 
-			System.out.println("Please insert your desired username:");
+			System.out.println("Please insert your desired password:");
 			BufferedReader br22 = new BufferedReader(new InputStreamReader(System.in));
 			MyBodyAPK.password = br22.readLine();
 
@@ -93,14 +95,24 @@ public class MyBodyAPK {
 
 		} else { // catch not viable input and let user return to start menu
 			System.out.println("Please choose between 1 or 2");
+			this.loginprocedure();
 		}
 
 	}
 
-	public void mainApp() throws NumberFormatException, IOException {
+	
+	public void MainMenu () throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int uresponse = Integer.parseInt(br.readLine());
+	
+		if (uresponse == 1) {
+			this.BMIcalculation();
+		}
+		
+	}
 
-		
-		
+	
+	public void BMIcalculation() throws NumberFormatException, IOException {	
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Please " + MyBodyAPK.uname + " insert your weight in kilograms");
 		double weight = Double.parseDouble(br.readLine());
@@ -119,15 +131,15 @@ public class MyBodyAPK {
 		System.out.println(" ------------------------ ");
 		System.out.println("");
 		System.out.println(
-				"Press 1 to calculate your BMI again, press 2 to logout, press any other number to exit the application");
+				"Press 1 to calculate your BMI again, press 2 go back to the main menu");
 		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
 		int response = Integer.parseInt(br1.readLine());
 		if (response == 1) {
-			this.mainApp();
+			this.BMIcalculation();
 		} else if (response == 2) {
 			MyBodyAPK start3 = new MyBodyAPK();
 		} else {
-			System.exit(0);
+			this.MainMenu();
 		}
 
 	}
