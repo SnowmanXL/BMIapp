@@ -107,6 +107,12 @@ public class MyBodyAPK {
 	
 		if (uresponse == 1) {
 			this.BMIcalculation();
+		} else if (uresponse == 2) {
+			//Dashboard Functionality
+		} else if (uresponse == 3) {
+			//Settings Functionality
+		} else if (uresponse == 4) {
+			new MyBodyAPK();
 		}
 		
 	}
