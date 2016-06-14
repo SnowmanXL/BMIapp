@@ -11,7 +11,7 @@ public class PwValidator {
 	public static int resptruecount = 0;
 
 	public PwValidator() {
-		PwValidator.pwvalidation(MyBodyAPK.uname, MyBodyAPK.password);
+		PwValidator.pwvalidation(ApplicationStructure.InlogNameStr, ApplicationStructure.InlogPasswordStr);
 	}
 
 	public static void main(String[] args) {
