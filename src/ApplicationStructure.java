@@ -81,8 +81,8 @@ public class ApplicationStructure {
 	//AdviseScreen Components
 	JLabel BMIResultLabel = new JLabel("Your BMI Score is: ");
 	JLabel BMIResult = new JLabel();
-	JLabel AdviseResultLabel = new JLabel("Your risk of having hearth and vascular disease is: ");
-	JTextField AdviseResult = new JTextField();
+	JLabel AdviseResultLabel = new JLabel("Our advice for you: ");
+	JTextArea AdviseResult = new JTextArea();
 	JButton AnotherBMICalculation = new JButton("Redo BMI Calculation");
 	JButton AdviseBackToMain = new JButton("Back to Main Menu");
 	
@@ -185,11 +185,13 @@ public class ApplicationStructure {
 		
 		//AdviseScreen
 		AdviseScreen.add(BMIResultLabel);
-		BMIResult.setBounds(110, 33, 135, 14);
+		BMIResult.setBounds(127, 33, 135, 14);
 		AdviseScreen.add(BMIResult);
 		AdviseResultLabel.setBounds(10, 58, 430, 14);
 		AdviseScreen.add(AdviseResultLabel);
+		AdviseResult.setLineWrap(true);
 		AdviseResult.setEditable(false);
+		AdviseResult.setToolTipText("Je advies");
 		AdviseResult.setBounds(10, 83, 430, 65);
 		AdviseScreen.add(AdviseResult);
 		AnotherBMICalculation.setBounds(10, 182, 170, 23);
