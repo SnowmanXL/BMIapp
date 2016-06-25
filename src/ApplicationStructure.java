@@ -14,10 +14,11 @@ public class ApplicationStructure {
 	public static int Length;
 	public static int MiddleSpan;
 	public static String Gender;
+	public static int Age;
 	
 	
 	// Application Panes
-	JFrame frame = new JFrame("CardLayout demo");
+	JFrame frame = new JFrame("BMIapp");
 	JPanel panelCont = new JPanel();
 	JPanel StartMenu = new JPanel();
 	JPanel InlogScreen = new JPanel();
@@ -61,9 +62,11 @@ public class ApplicationStructure {
 	JFormattedTextField WeigthField = new JFormattedTextField(WLMFormat);
 	JFormattedTextField LengthField = new JFormattedTextField(WLMFormat);
 	JFormattedTextField MiddleSpanField = new JFormattedTextField();
+	JFormattedTextField AgeField = new JFormattedTextField();
 	JLabel BMIWeightLabel = new JLabel("Please insert your weight in kilograms");
 	JLabel BMILengthLabel = new JLabel("Please insert your length in centimeters");
 	JLabel BMIMiddleSpanLabel = new JLabel("Please insert your middlespan in centimeters");
+	JLabel BMIage = new JLabel("Please insert your age in years");
 	String[] GenderList = new String[] {"Man", "Woman"};
 	JComboBox<String> GenderSelect = new JComboBox<>(GenderList);
 	
@@ -124,6 +127,9 @@ public class ApplicationStructure {
 		MiddleSpanField.setValue(WLMFormat);
 		MiddleSpanField.setColumns(20);
 		BMIfillerScreen.add(MiddleSpanField);
+		BMIfillerScreen.add(BMIage);
+		BMIfillerScreen.add(AgeField);
+		AgeField.setColumns(20);
 		BMIfillerScreen.add(GenderSelect);
 		BMIfillerScreen.add(BMIEnter);
 		BMIfillerScreen.add(BMIBackToMain);
@@ -232,14 +238,18 @@ public class ApplicationStructure {
 				Length = Integer.parseInt(LengthField.getText());
 				MiddleSpan = Integer.parseInt(MiddleSpanField.getText());
 				Gender = String.valueOf(GenderSelect.getSelectedItem());
+				Age = Integer.parseInt(AgeField.getText());
 				
 				System.out.println( " Debug: " + Weight + " " + Length + " "  + MiddleSpan + " "  + Gender + " " );
 				new BMICalculation(Weight, Length, MiddleSpan, Gender);
 				
 				System.out.println(BMICalculation.BMI + " " + BMICalculation.Risk + " ");
 				
-				AdviseResult.setText(BMICalculation.Risk);
+				//AdviseResult.setText(BMICalculation.Risk);
 				BMIResult.setText(String.valueOf(BMICalculation.BMI));
+				
+				new AdviseFetch();
+				AdviseResult.setText(AdviseFetch.Advise);
 				
 				cl.show(panelCont, "6");
 			}

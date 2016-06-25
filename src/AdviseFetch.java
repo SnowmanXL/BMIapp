@@ -1,24 +1,29 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class PwValidator {
+public class AdviseFetch {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://sql7.freemysqlhosting.net/sql7125334";
 	static final String USER = "sql7125334";
 	static final String PASS = "UZtplEEUYC";
+	
 	static Connection conn = null;
 	static Statement stmt = null;
-	public static boolean SQLresponse;
-	public static int resptruecount = 0;
+	public static String Advise;
+	
 
-	public PwValidator() {
-		PwValidator.pwvalidation(ApplicationStructure.InlogNameStr, ApplicationStructure.InlogPasswordStr);
+	public AdviseFetch() {
+		AdviseFetch.AdviseFetchSQL();
 	}
 
 	public static void main(String[] args) {
-		PwValidator a = new PwValidator();
+		AdviseFetch a = new AdviseFetch();
 	}
 
-	public static void pwvalidation(String unamein, String pwin) {
+	public static void AdviseFetchSQL() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("Connecting to database...");
@@ -26,19 +31,12 @@ public class PwValidator {
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
 			String sql;
-			sql = "SELECT U_NAME, U_WW FROM users where U_NAME = \"" + unamein + "\" and U_WW = \"" + pwin + "\"";
+			sql = "Select advise from advise_matrix where 1=1 and BMI_Min <= " + BMICalculation.BMI + " and BMI_Max >= " + BMICalculation.BMI + " and AGE_Min <= " + ApplicationStructure.Age + " and AGE_Max >= " + ApplicationStructure.Age + " and Risk = '" + BMICalculation.Risk + "'";
+			System.out.println(sql);
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				String uname = rs.getString("U_NAME");
-				String ww = rs.getString("U_WW");
-				System.out.println(uname + "\t" + ww);
-				System.out.println(unamein + "\t" + pwin);
-				if (unamein.equals(uname) && pwin.equals(ww)) {
-					SQLresponse = true;
-					resptruecount++;
-				} else {
-					System.out.println("No luck!");
-				}
+				Advise = rs.getString("advise");
+				System.out.println(Advise);
 			}
 			rs.close();
 			stmt.close();

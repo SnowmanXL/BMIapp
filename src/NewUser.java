@@ -3,9 +3,9 @@ import java.sql.*;
 public class NewUser {
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost/EMP";
-	static final String USER = "root";
-	static final String PASS = "root";
+	static final String DB_URL = "jdbc:mysql://sql7.freemysqlhosting.net/sql7125334";
+	static final String USER = "sql7125334";
+	static final String PASS = "UZtplEEUYC";
 	static Connection conn = null;
 	static Statement stmt = null;
 	static int Uid;
