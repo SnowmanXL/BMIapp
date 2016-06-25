@@ -1,7 +1,11 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.NumberFormat;
 
 
@@ -32,6 +36,10 @@ public class ApplicationStructure {
 	//StartMenu Components
 	JButton Login = new JButton("Login");
 	JButton RegisterNewUser = new JButton("Register a new user");
+	
+	
+
+	
 	
 	//InlogScreen Components
 	JButton BackToMainMenu = new JButton("Back to Start Menu");
@@ -74,7 +82,7 @@ public class ApplicationStructure {
 	JLabel BMIResultLabel = new JLabel("Your BMI Score is: ");
 	JLabel BMIResult = new JLabel();
 	JLabel AdviseResultLabel = new JLabel("Your risk of having hearth and vascular disease is: ");
-	JLabel AdviseResult = new JLabel();
+	JTextField AdviseResult = new JTextField();
 	JButton AnotherBMICalculation = new JButton("Redo BMI Calculation");
 	JButton AdviseBackToMain = new JButton("Back to Main Menu");
 	
@@ -82,7 +90,7 @@ public class ApplicationStructure {
 	CardLayout cl = new CardLayout();
 
 	
-	public ApplicationStructure() {
+	public ApplicationStructure() throws IOException {
 		//Setting Layout Master Window
 		panelCont.setLayout(cl);
 		panelCont.setPreferredSize(new Dimension(450, 300));
@@ -91,11 +99,16 @@ public class ApplicationStructure {
 		
 		//adding components to frames
 		//StartMenu Frame
+		BufferedImage myPicture = ImageIO.read(new File("C:\\Users\\Wilfred\\Documents\\workspace\\Health.jpg"));
+		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+		picLabel.setBounds(0, 0, 450, 300);
+		
 		StartMenu.add(Login);
 		RegisterNewUser.setBounds(136, 45, 166, 23);
 		StartMenu.add(RegisterNewUser);
 		InlogScreen.setLayout(null);
 		InlogNameLabel.setBounds(41, 39, 77, 14);
+		StartMenu.add(picLabel);
 		
 		//InlogScreen Frame
 		InlogScreen.add(InlogNameLabel);
@@ -166,6 +179,7 @@ public class ApplicationStructure {
 		BMIfillerScreen.add(BMIEnter);
 		BMIBackToMain.setBounds(10, 251, 166, 23);
 		BMIfillerScreen.add(BMIBackToMain);
+		AdviseScreen.setBackground(Color.WHITE);
 		AdviseScreen.setLayout(null);
 		BMIResultLabel.setBounds(10, 33, 107, 14);
 		
@@ -175,6 +189,7 @@ public class ApplicationStructure {
 		AdviseScreen.add(BMIResult);
 		AdviseResultLabel.setBounds(10, 58, 430, 14);
 		AdviseScreen.add(AdviseResultLabel);
+		AdviseResult.setEditable(false);
 		AdviseResult.setBounds(10, 83, 430, 65);
 		AdviseScreen.add(AdviseResult);
 		AnotherBMICalculation.setBounds(10, 182, 170, 23);
@@ -337,11 +352,16 @@ public class ApplicationStructure {
 		
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new ApplicationStructure();
+				try {
+					new ApplicationStructure();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 	}
