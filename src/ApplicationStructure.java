@@ -68,7 +68,7 @@ public class ApplicationStructure {
 	JLabel BMIMiddleSpanLabel = new JLabel("Please insert your middlespan in centimeters");
 	JLabel BMIage = new JLabel("Please insert your age in years");
 	String[] GenderList = new String[] {"Man", "Woman"};
-	JComboBox<String> GenderSelect = new JComboBox<>(GenderList);
+	//JComboBox<String> GenderSelect = new JComboBox<>(GenderList);
 	
 	//AdviseScreen Components
 	JLabel BMIResultLabel = new JLabel("Your BMI Score is: ");
@@ -85,61 +85,101 @@ public class ApplicationStructure {
 	public ApplicationStructure() {
 		//Setting Layout Master Window
 		panelCont.setLayout(cl);
-		panelCont.setPreferredSize(new Dimension(800, 300));
+		panelCont.setPreferredSize(new Dimension(450, 300));
+		StartMenu.setLayout(null);
+		Login.setBounds(136, 11, 166, 23);
 		
 		//adding components to frames
 		//StartMenu Frame
 		StartMenu.add(Login);
+		RegisterNewUser.setBounds(136, 45, 166, 23);
 		StartMenu.add(RegisterNewUser);
+		InlogScreen.setLayout(null);
+		InlogNameLabel.setBounds(41, 39, 77, 14);
 		
 		//InlogScreen Frame
 		InlogScreen.add(InlogNameLabel);
+		InlogName.setBounds(128, 36, 166, 20);
 		InlogScreen.add(InlogName);
+		PasswordLabel.setBounds(41, 70, 77, 14);
 		InlogScreen.add(PasswordLabel);
+		Password.setBounds(128, 67, 166, 20);
 		InlogScreen.add(Password);
+		LoginEnter.setBounds(41, 95, 166, 23);
 		InlogScreen.add(LoginEnter);
+		BackToMainMenu.setBounds(41, 129, 166, 23);
 		InlogScreen.add(BackToMainMenu);
+		RegisterScreen.setLayout(null);
+		InlogNameLabelReg.setBounds(38, 45, 87, 14);
 		
 		//RegisterScreen Frame
 		RegisterScreen.add(InlogNameLabelReg);
+		InlogNameReg.setBounds(135, 42, 166, 20);
 		RegisterScreen.add(InlogNameReg);
+		PasswordLabelReg.setBounds(38, 79, 87, 14);
 		RegisterScreen.add(PasswordLabelReg);
+		PasswordReg.setBounds(135, 76, 166, 20);
 		RegisterScreen.add(PasswordReg);
+		RegisterEnterReg.setBounds(38, 113, 152, 23);
 		RegisterScreen.add(RegisterEnterReg);
+		BackToMainMenuReg.setBounds(38, 147, 152, 23);
 		RegisterScreen.add(BackToMainMenuReg);
+		MainMenu.setLayout(null);
+		MainBMICalculator.setBounds(134, 74, 176, 23);
 		
 		//MainMenu Frame
 		MainMenu.add(MainBMICalculator);
+		MainDashboard.setBounds(134, 109, 176, 23);
 		MainMenu.add(MainDashboard);
+		MainSettings.setBounds(134, 143, 176, 23);
 		MainMenu.add(MainSettings);
+		MainLogout.setBounds(134, 180, 176, 23);
 		MainMenu.add(MainLogout);
+		BMIfillerScreen.setLayout(null);
+		BMIWeightLabel.setBounds(10, 70, 293, 14);
 		
 		//BMICalculation Frame
 		BMIfillerScreen.add(BMIWeightLabel);
+		WeigthField.setBounds(313, 67, 85, 20);
 		WeigthField.setValue(WLMFormat);
 		WeigthField.setColumns(20);
 		BMIfillerScreen.add(WeigthField);
+		BMILengthLabel.setBounds(10, 95, 293, 14);
 		BMIfillerScreen.add(BMILengthLabel);
+		LengthField.setBounds(313, 92, 85, 20);
 		LengthField.setValue(WLMFormat);
 		LengthField.setColumns(20);
 		BMIfillerScreen.add(LengthField);
+		BMIMiddleSpanLabel.setBounds(10, 120, 293, 14);
 		BMIfillerScreen.add(BMIMiddleSpanLabel);
+		MiddleSpanField.setBounds(313, 117, 85, 20);
 		MiddleSpanField.setValue(WLMFormat);
 		MiddleSpanField.setColumns(20);
 		BMIfillerScreen.add(MiddleSpanField);
+		BMIage.setBounds(10, 145, 293, 14);
 		BMIfillerScreen.add(BMIage);
+		AgeField.setBounds(313, 142, 85, 20);
 		BMIfillerScreen.add(AgeField);
 		AgeField.setColumns(20);
-		BMIfillerScreen.add(GenderSelect);
+		BMIEnter.setBounds(10, 217, 166, 23);
+		//BMIfillerScreen.add(GenderSelect);
 		BMIfillerScreen.add(BMIEnter);
+		BMIBackToMain.setBounds(10, 251, 166, 23);
 		BMIfillerScreen.add(BMIBackToMain);
+		AdviseScreen.setLayout(null);
+		BMIResultLabel.setBounds(10, 33, 107, 14);
 		
 		//AdviseScreen
 		AdviseScreen.add(BMIResultLabel);
+		BMIResult.setBounds(110, 33, 135, 14);
 		AdviseScreen.add(BMIResult);
+		AdviseResultLabel.setBounds(10, 58, 430, 14);
 		AdviseScreen.add(AdviseResultLabel);
+		AdviseResult.setBounds(10, 83, 430, 65);
 		AdviseScreen.add(AdviseResult);
+		AnotherBMICalculation.setBounds(10, 182, 170, 23);
 		AdviseScreen.add(AnotherBMICalculation);
+		AdviseBackToMain.setBounds(10, 159, 170, 23);
 		AdviseScreen.add(AdviseBackToMain);
 		
 		//Setting Visuals of frames
@@ -156,6 +196,14 @@ public class ApplicationStructure {
 		panelCont.add(MainMenu, "4");
 		panelCont.add(BMIfillerScreen, "5");
 		panelCont.add(AdviseScreen, "6");
+		
+		final JComboBox<String> genderselect = new JComboBox<String>();
+		genderselect.setEditable(true);
+		genderselect.setBounds(313, 173, 85, 20);
+		genderselect.addItem("Male");
+		genderselect.addItem("Female");
+		BMIfillerScreen.add(genderselect);
+		
 		
 		//Start on StartMenu
 		cl.show(panelCont, "1");
@@ -237,7 +285,11 @@ public class ApplicationStructure {
 				Weight = Integer.parseInt(WeigthField.getText());
 				Length = Integer.parseInt(LengthField.getText());
 				MiddleSpan = Integer.parseInt(MiddleSpanField.getText());
-				Gender = String.valueOf(GenderSelect.getSelectedItem());
+				Object gender_select = genderselect.getSelectedItem();
+				Gender = (String) genderselect.getSelectedItem();
+				
+				//Gender = String.valueOf(GenderSelect.getSelectedItem());
+				
 				Age = Integer.parseInt(AgeField.getText());
 				
 				System.out.println( " Debug: " + Weight + " " + Length + " "  + MiddleSpan + " "  + Gender + " " );
@@ -278,7 +330,7 @@ public class ApplicationStructure {
 		});
 		
 		
-		frame.add(panelCont);
+		frame.getContentPane().add(panelCont);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
@@ -293,5 +345,4 @@ public class ApplicationStructure {
 			}
 		});
 	}
-
 }
