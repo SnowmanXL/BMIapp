@@ -200,8 +200,8 @@ public class ApplicationStructure {
 		final JComboBox<String> genderselect = new JComboBox<String>();
 		genderselect.setEditable(true);
 		genderselect.setBounds(313, 173, 85, 20);
-		genderselect.addItem("Male");
-		genderselect.addItem("Female");
+		genderselect.addItem("Man");
+		genderselect.addItem("Woman");
 		BMIfillerScreen.add(genderselect);
 		
 		
